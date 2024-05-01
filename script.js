@@ -70,6 +70,7 @@ checkIn(flight, hochmajer);
 // FUNCTIONS ACCEPTING CALLBACK FUNCTIONS //
 ////////////////////////////////////////////
 
+/*
 const oneWord = function (str) {
   return str.replace(/ /g, '').toLowerCase();
 };
@@ -98,3 +99,26 @@ const high5 = function () {
 document.body.addEventListener('click', high5);
 
 ['Jonas', 'Martha', 'Adam'].forEach(high5);
+
+*/
+
+///////////////////////////////////
+// FUNCTIONS RETURNING FUNCTIONS //
+///////////////////////////////////
+
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+
+const greeterHey = greet('Hey');
+greeterHey('Jonas');
+greeterHey('Steven');
+//same as
+greet('zdar')('pičo');
+
+const greetX = greeting => name => console.log(`${greeting} ${name}`);
+// greeterZdar = greetX('Zdar');
+// greeterZdar('hochu!');
+greetX('Zdar')('hochu!');
