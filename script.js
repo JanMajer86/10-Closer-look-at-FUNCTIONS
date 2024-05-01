@@ -106,6 +106,7 @@ document.body.addEventListener('click', high5);
 // FUNCTIONS RETURNING FUNCTIONS //
 ///////////////////////////////////
 
+/*
 const greet = function (greeting) {
   return function (name) {
     console.log(`${greeting} ${name}`);
@@ -122,3 +123,61 @@ const greetX = greeting => name => console.log(`${greeting} ${name}`);
 // greeterZdar = greetX('Zdar');
 // greeterZdar('hochu!');
 greetX('Zdar')('hochu!');
+*/
+
+////////////////////////////////
+// the CALL and APPLY methods //
+////////////////////////////////
+
+/*
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
+
+lufthansa.book(239, 'Jan Majer');
+lufthansa.book(634, 'John Smith');
+
+const euroWings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+
+const book = lufthansa.book;
+// regular function call: "this" keyword is undefined
+// does NOT work
+// book(23, 'Sarah Williams');
+
+// CALL METHOD - first argument manually sets "this" keyword
+book.call(euroWings, 23, 'Sarah Williams');
+
+book.call(lufthansa, 239, 'Mary Cooper');
+
+const swiss = {
+  airline: 'Swiss Air Lines',
+  iataCode: 'LX',
+  bookings: [],
+};
+
+book.call(swiss, 583, 'Dale Cooper');
+
+// APPLY METHOD - same as "call" method, only takes argumens after "this" keyword in an array
+
+const flighData = [583, 'Jim Morrison'];
+book.apply(swiss, flighData);
+book.apply(euroWings, [666, 'Nicky Devil']);
+
+book.call(swiss, ...flighData);
+
+console.log(swiss);
+console.log(lufthansa);
+console.log(euroWings);
+*/
