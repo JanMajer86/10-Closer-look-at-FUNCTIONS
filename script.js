@@ -129,7 +129,6 @@ greetX('Zdar')('hochu!');
 // the CALL and APPLY methods //
 ////////////////////////////////
 
-/*
 const lufthansa = {
   airline: 'Lufthansa',
   iataCode: 'LH',
@@ -180,4 +179,32 @@ book.call(swiss, ...flighData);
 console.log(swiss);
 console.log(lufthansa);
 console.log(euroWings);
-*/
+
+/////////////////
+// BIND METHOD //
+/////////////////
+
+const bookEW = book.bind(euroWings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+
+bookEW(161, 'Evils Parsley');
+console.log(euroWings);
+
+// hardcoding parameters into binded function
+const bookEW23 = book.bind(euroWings, 23);
+
+bookEW23('Johnny Silverhand');
+bookEW23('Martha Cooper');
+
+// With Event Listeners
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
